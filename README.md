@@ -1,3 +1,3 @@
-# Scralet
+# Scarlet
 
 > Randomly generated and trimmed
