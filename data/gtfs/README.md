@@ -16,3 +16,7 @@
 - `8` Night Buses
 - `10` Interstate trains
 - `11` Skybus
+
+## Useful links
+
+- [GTFS specifications](https://developers.google.com/transit/gtfs/)
