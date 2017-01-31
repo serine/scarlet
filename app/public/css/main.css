@@ -21,7 +21,7 @@
   margin: 8px;
 }
 
-.chart {
+/*.chart {
    width: 500px;
    height: 400px;
 }
@@ -30,4 +30,7 @@
   stroke: green;
   fill: white;
   stroke-width: 5;
+} */
+svg.rotate {
+  transform: rotate(-90deg);
 }
