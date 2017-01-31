@@ -11,3 +11,5 @@ data/gtfs/10
 data/gtfs/11
 
 gtfs-to-html
+
+*.swp
