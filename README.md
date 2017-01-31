@@ -2,16 +2,29 @@
 
 > Randomly generated and trimmed
 
-## Content
+Allow users to geospatially and interactively determine where public transport services are judge the quality of connections. Visual emphasis must be placed on route selection, and vehicles traveling on and to those routes.
+
+## Data
 
 - [About data](data/gtfs/README.md)
+- [Map/transport design reference](https://www.pinterest.com/dmncmzz/transport/)
 
-## Proposal?
+## Scope
+- Prototype using Caulfield group (Pakenham, Cranbourne and Frankston) train lines and intersecting tram and bus routes via the City Loop through D3v4.
+- Display transport vehicles traveling on these lines in real-time by interpolating stop times. [http://tracker.geops.ch/?z=14&s=1&x=16137864.0494&y=-4552544.6017&l=transport](TRAVIC) is a relevant example.
+- Aim for the quality of Uber, to clearly see vehicles and vehicle mode/route neatly.
+- And more if we can.
 
-Want to have moving objects, where each object represents different types of public transport. So that one can zoom in to the area of interest and
-see all available options for travel. This should have actual times (timetable) associated with the desirable stops like ubering public transport. 
+## Timeline
 
-Alos being able to rate the service can be useful
+Team Member | Tuesday | Wednesday | Thursday | Friday
+----------- | ------- | --------- | -------- | ------
+Bo | +1 to team | - | - | - |
+Dom | Project management + doc, design ideas | Design and web wireframe/assets | HTML/CSS magic + assets | Refine layout |
+Kizza | D3 nodes, on Node + doc | Stop nodes | Vehicle nodes, service info display | Refine info display |
+Lewis | D3 route investigation | Working routes | Routes/node animation | Refine network display |
+
+All of the above, then beer.
 
 ## Quick start
 
