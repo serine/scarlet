@@ -1,4 +1,5 @@
-f = "data/2/stops.txt"
+//f = "data/2/stops.txt"
+f = "stops.txt"
 ff = "data/3/stops.txt"
 
 //domain = {-50, 150}
@@ -37,6 +38,9 @@ d3.csv(f, function(error, d) {
         .attr("cy", function(d) {return yScale(d.stop_lat)} )
         .attr("r", 5)
         .attr("stroke", "blue")
+        //.on("mouseover", function(d) {
+        //    chart1.html(d.stop_name);
+        //})
         
     console.log(d)
 });
