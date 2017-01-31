@@ -9,12 +9,11 @@ Allow users to geospatially and interactively determine where public transport s
 - [Public Transport Victoria GTFS data](data/gtfs/README.md)
 
 ## Precedents
-- Visualisation
-	- [TRAVIC](http://tracker.geops.ch/?z=14&s=1&x=16137864.0494&y=-4552544.6017&l=transport)
-	- [D3 flight visualisation demo](http://www.decembercafe.org/demo/plane/)
-- Graphics
-	- [Public transport graphic design collateral](https://www.pinterest.com/dmncmzz/transport/)
-	- [transitmap.net Pinterest](https://www.pinterest.com/camgbooth/transit-maps/)
+
+- [TRAVIC](http://tracker.geops.ch/?z=14&s=1&x=16137864.0494&y=-4552544.6017&l=transport)
+- [D3 flight visualisation demo](http://www.decembercafe.org/demo/plane/)
+- [Public transport graphic design collateral](https://www.pinterest.com/dmncmzz/transport/)
+- [transitmap.net Pinterest](https://www.pinterest.com/camgbooth/transit-maps/)
 
 ## Scope
 - Prototype using Caulfield group (Pakenham, Cranbourne and Frankston) train lines and intersecting tram and bus routes via the City Loop through D3v4.
