@@ -6,12 +6,16 @@ Allow users to geospatially and interactively determine where public transport s
 
 ## Data
 
-- [About data](data/gtfs/README.md)
-- [Map/transport design reference](https://www.pinterest.com/dmncmzz/transport/)
+- [Public Transport Victoria GTFS data](data/gtfs/README.md)
+
+## Precedents
+- [Public transport graphic design collateral](https://www.pinterest.com/dmncmzz/transport/)
+- [transitmap.net Pinterest](https://www.pinterest.com/camgbooth/transit-maps/)
+- [D3 flight visualisation demo](http://www.decembercafe.org/demo/plane/)
 
 ## Scope
 - Prototype using Caulfield group (Pakenham, Cranbourne and Frankston) train lines and intersecting tram and bus routes via the City Loop through D3v4.
-- Display transport vehicles traveling on these lines in real-time by interpolating stop times. [http://tracker.geops.ch/?z=14&s=1&x=16137864.0494&y=-4552544.6017&l=transport](TRAVIC) is a relevant example.
+- Display transport vehicles traveling on these lines in real-time by interpolating stop times. [TRAVIC](http://tracker.geops.ch/?z=14&s=1&x=16137864.0494&y=-4552544.6017&l=transport) is a relevant example.
 - Aim for the quality of Uber, to clearly see vehicles and vehicle mode/route neatly.
 - And more if we can.
 
