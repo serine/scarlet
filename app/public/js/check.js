@@ -1,6 +1,6 @@
 //f = "data/2/stops.txt"
 f = "stops.txt"
-ff = "data/3/stops.txt"
+//ff = "data/3/stops.txt"
 
 //domain = {-50, 150}
 
