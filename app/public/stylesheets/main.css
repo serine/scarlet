@@ -1,0 +1,33 @@
+.title {
+  color: blue;
+  font-size: 50px;
+  text-align: center;
+}
+
+.description {
+  color: #6E6E6E;
+  font-size: 30px;
+  /*border-style: solid;*/
+  border-left: 4px solid;
+  border-color: #000000;
+  padding: 10px;
+  width: 650px;
+  background: #F6D8CE;
+  margin: auto;
+}
+
+.image {
+  display: block;
+  margin: 8px;
+}
+
+.chart {
+   width: 500px;
+   height: 400px;
+}
+
+.circ1 {
+  stroke: green;
+  fill: white;
+  stroke-width: 5;
+}
