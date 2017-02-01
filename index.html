@@ -94,10 +94,12 @@ section:nth-child(4){
 	right: 0;
 }
 
-.line > span:nth-child(5){
+.line > span:nth-child(5){/* transport vehicle node */
 	left: initial;
 	right: 20%;
+	margin-top: -3px;
 	border-radius: initial;
+	border: 3px solid #000;
 }
 
 .bus, .bus > span{
@@ -118,12 +120,17 @@ section:nth-child(4){
 
 h2{
 	font-size: 1.2em;
-	margin: 6px 0;
+	margin: 12px 0;
 }
 
 h2 span{
 	background-color: white;
+	border: 3px solid #000;
 	padding: 1px 5px;
+	width: .8em;
+	margin-right: .2em;
+	display: inline-block;
+	text-align: center;
 }
 
 .selected{
@@ -131,6 +138,10 @@ h2 span{
 	border: 3px solid white;
 	margin-top: -3px;
 	border-radius: 22px!important;
+}
+
+p{
+	max-width: 300px;
 }
 
 
@@ -210,14 +221,14 @@ h2 span{
 
 	<section class="bus">
 		<h1>Bus</h1>
-		<h2><span>A</span> 19:03 (1 min) 903 to Altona</h2>
-		<h2><span>B</span> 19:08 (6 min) 465 to Essendon</h2>
+		<h2><span>1</span>min (19:03) 903 to Altona</h2>
+		<h2><span>6</span>min (19:08) 465 to Essendon</h2>
 		<div class="line">
 			<span></span>
 			<span class="selected"></span>
 			<span></span>
 			<span></span>
-			<span>A</span>
+			<span>1</span>
 		</div>
 
 		<div class="line train">
@@ -240,6 +251,8 @@ h2 span{
 			<span></span>
 			<span></span>
 		</div>
+
+		<p>The visual style ensures clarity of mode selection, stop node selection and vehicle node identification + time. </p>
 
 	</section>
 
