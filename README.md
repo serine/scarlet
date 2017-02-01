@@ -14,7 +14,7 @@ Allow users to geospatially and interactively determine where public transport s
 - [D3 flight visualisation demo](http://www.decembercafe.org/demo/plane/)
 - [Public transport graphic design collateral](https://www.pinterest.com/dmncmzz/transport/)
 - [transitmap.net Pinterest](https://www.pinterest.com/camgbooth/transit-maps/)
-- PTV mode colours <span style="color:#FF8201">`bus #FF8201`</span> <span style="color:#78BE21">`tram #78BE21`</span> <span style="color:#0172CE">`train #0172CE`</span> <span style="color:#911C92">`regional #911C92`</span>
+- PTV mode colours <span style="color:#FF8201">&bull;`bus #FF8201`</span> <span style="color:#78BE21">&bull;`tram #78BE21`</span> <span style="color:#0172CE">&bull;`train #0172CE`</span> <span style="color:#911C92">&bull;`regional #911C92`</span>
 
 ## Scope
 - Prototype using Caulfield group (Pakenham, Cranbourne and Frankston) train lines and intersecting tram and bus routes via the City Loop through D3v4.
