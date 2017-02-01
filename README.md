@@ -24,12 +24,13 @@ Allow users to geospatially and interactively determine where public transport s
 
 ## Timeline
 
-Team Member | Tuesday | Wednesday | Thursday | Friday
------------ | ------- | --------- | -------- | ------
-Bo | +1 to team | - | - | - |
-Dom | Project management + doc, design ideas | Design and web wireframe/assets | HTML/CSS magic + assets | Refine layout |
-Kizza | D3 nodes, on Node + doc | Stop nodes | Vehicle nodes, service info display | Refine info display |
-Lewis | D3 route investigation | Working routes | Routes/node animation | Refine network display |
+Team Member | Tuesday | Wednesday | Thursday
+----------- | ------- | --------- | -------- 
+Dom | Project management + doc, design ideas | Design and web wireframe/assets | HTML/CSS magic + assets, manually encode connections for faux nearest neighbour
+Kizza | D3 nodes, on Node + doc | Stop nodes | Vehicle nodes, service info display
+Lewis | D3 route investigation | Working routes | Routes/node animation
+
+Friday: presentation.
 
 All of the above, then beer.
 
