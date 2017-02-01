@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title>Scarlet Visual Experiments</Title>
+<meta name="description" content="">
+<script type="text/javascript">
+
+
+</script>
+<style type="text/css">
+
+* {
+margin: 0;
+padding: 0;
+}
+
+html,body{
+height:100%;
+background-color: #fff;
+background-size: 20px 20px;
+font-family: -apple-system, Helvetica, Arial, sans-serif;
+color: #111;
+font-size: 100%;
+-webkit-text-size-adjust:100%;
+}
+
+main{
+	width: 100%;
+	height: 100%;
+	background-color: yellow;
+	display: flex;
+	flex-flow: row wrap;
+
+	align-items: stretch;
+	align-content: stretch;
+}
+
+section{
+	flex: 1 1 auto;
+	padding: 20px;
+}
+
+/*section:nth-child(1){
+	background-color: #FF8201;
+}
+
+section:nth-child(2){
+	background-color: #78BE21;
+}
+
+section:nth-child(3){
+	background-color: #0172CE;
+}
+
+section:nth-child(4){
+	background-color: #911C92;
+}*/
+
+.line{
+	display: block;
+	width: 100%;
+	margin: 40px 0;
+	height: 4px;
+	background-color: #fff;
+	position: relative;
+}
+
+.line > span{
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: #fff;
+	display: inline-block;
+	position: absolute;
+	top: -8px;
+	left: 0;
+	text-align: center;
+	font-weight: bold;
+}
+
+.line > span:nth-child(2){
+	left: 33.33%;
+	margin-left: -10px;
+}
+
+.line > span:nth-child(3){
+	left: 66.66%;
+	margin-left: -10px;
+}
+
+.line > span:nth-child(4){
+	left: initial;
+	right: 0;
+}
+
+.line > span:nth-child(5){
+	left: initial;
+	right: 20%;
+	border-radius: initial;
+}
+
+.bus, .bus > span{
+	background-color: #FF8201;
+}
+
+.tram, .tram > span{
+	background-color: #78BE21;
+}
+
+.train, .train > span{
+	background-color: #0172CE;
+}
+
+.regional, .regional > span{
+	background-color: #911C92;
+}
+
+h2{
+	font-size: 1.2em;
+	margin: 6px 0;
+}
+
+h2 span{
+	background-color: white;
+	padding: 1px 5px;
+}
+
+.selected{
+	background-color: #000!important;
+	border: 3px solid white;
+	margin-top: -3px;
+	border-radius: 22px!important;
+}
+
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+
+<main>
+
+	<section class="train">
+		<h1>Train</h1>
+
+		<div class="line">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line tram">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line bus">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line regional">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+	</section>
+
+	<section class="tram">
+		<h1>Tram</h1>
+
+		<div class="line">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line train">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line bus">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line regional">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+	</section>
+
+	<section class="bus">
+		<h1>Bus</h1>
+		<h2><span>A</span> 19:03 (1 min) 903 to Altona</h2>
+		<h2><span>B</span> 19:08 (6 min) 465 to Essendon</h2>
+		<div class="line">
+			<span></span>
+			<span class="selected"></span>
+			<span></span>
+			<span></span>
+			<span>A</span>
+		</div>
+
+		<div class="line train">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line tram">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line regional">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+	</section>
+
+	<section class="regional">
+		<h1>Regional</h1>
+
+		<div class="line">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line train">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line tram">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line bus">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+	</section>
+
+</main>
+
+
+	
+
+</body>
+
+</html>
