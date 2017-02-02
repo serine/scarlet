@@ -298,7 +298,7 @@ header > h1{
 	visibility: hidden;
 	max-height: 0;
 	overflow: hidden;
-	transition: max-height 0.3s ease-out;
+	/*transition: max-height 0.3s ease-out;*/
 }
 
 #dialog > div h2:focus{
@@ -310,8 +310,7 @@ header > h1{
 	visibility: visible;
 	max-height: 200px;
 	overflow-y: scroll;
-	transition: max-height 0.3s ease-in;
-	/* margin-bottom: 10px; ensures a little of the background colour comes through at the end of the list */
+	/*transition: max-height 0.3s ease-in;*/
 }
 
 #dialog > div ul{
@@ -406,12 +405,6 @@ figure{
 
 .regional, .regional > span{
 	background-color: #911C92!important;
-}
-
-@media screen and (max-width: 600px){
-	#dialog > div h2 + ul, #dialog > div h2:focus + ul{
-		transition: initial;
-	}
 }
 
 </style>
