@@ -119,22 +119,6 @@ section:nth-child(4){
 	border: 3px solid #000;
 }
 
-.bus, .bus > span{
-	background-color: #FF8201;
-}
-
-.tram, .tram > span{
-	background-color: #78BE21;
-}
-
-.train, .train > span{
-	background-color: #0172CE;
-}
-
-.regional, .regional > span{
-	background-color: #911C92;
-}
-
 h2{
 	font-size: 1.2em;
 	margin: 12px 0;
@@ -157,16 +141,218 @@ h2 span{
 	border-radius: 22px!important;
 }
 
-p{
+main p{
 	max-width: 300px;
 }
 
+#dialog{
+	width: 300px;
+	max-height: 600px;/* maximum height */
+	background-color: #fff;
+	border: 3px solid #000;
+	position: absolute;
+	z-index: 9999;
+	right: 10px;
+	bottom: 10px;
+
+	display: flex;
+	flex-flow: column wrap;
+	overflow: hidden;
+}
+
+#dialog > div{
+	position: relative;
+	border-bottom: 3px solid black;
+}
+
+#dialog > div:last-child{
+	border-bottom: 0;/* no border for last child */
+}
+
+#dialog > div h2{
+	padding: 10px;
+	position: relative;
+	cursor: pointer;
+}
+
+#dialog > div h2 + ul{/* hide <ul> */
+	/*display: none;*/
+	visibility: hidden;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.15s ease-out;
+}
+
+#dialog > div h2:focus + ul{/* show ul on preceeding h2 focus */
+	/*display: initial;*/
+	visibility: visible;
+	max-height: 200px;
+	overflow: scroll;
+	transition: max-height 0.25s ease-in;
+	/* margin-bottom: 10px; ensures a little of the background colour comes through at the end of the list */
+}
+
+#dialog > div ul{
+	list-style-type: none;
+}
+
+#dialog > div ul li{
+	margin-bottom: 10px;
+	background-color: #fff;
+	font-weight: bold;
+
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	align-content: stretch;
+}
+
+#dialog > div ul li > span, #dialog > div ul li > p{/* space first level spans in row */
+	padding: 10px;
+}
+
+#dialog > div ul li > span:nth-child(1){/* timestamp style, also spaces row */
+background-color: #ccc;
+flex: 3 3 30%;
+text-align: center;
+}
+
+#dialog > div ul li > p{/* destination info wrapper */
+	flex: 7 7 70%;
+}
+
+#dialog > div ul li > span:nth-child(1) > p:nth-child(2){/* space above time */
+	margin-top: 5px;
+}
+
+#dialog > div ul li > span:nth-child(1) > p span{/* vehicle marker/timer style */
+	background-color: #fff;
+	border: 3px solid #000;
+	padding: 1px 5px;
+	margin-right: .2em;
+	display: inline-block;
+	text-align: center;
+}
+
+/*#dialog > div ul li:nth-of-type(even){
+	background-color: #eee;
+}
+
+#dialog > div ul li:nth-of-type(odd){
+	background-color: #fff;
+}*/
+
+.expand:after{/* expand arrow psudo class */
+	content: " \25BA";
+	right: 10px;
+}
+
+h2:focus:after, .collapse:after{/* collapse arrow on h2 focus or psudo class */
+	content: " \25BC";
+	right: 12px;
+}
+
+.expand:after, .collapse:after{/* expand/collapse arrow positioning */
+	position: absolute;
+	top: 50%;
+	line-height: 1.2em;
+	margin-top: -.6em;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.bus, .bus > span{
+	background-color: #FF8201!important;
+}
+
+.tram, .tram > span{
+	background-color: #78BE21!important;
+}
+
+.train, .train > span{
+	background-color: #0172CE!important;
+}
+
+.regional, .regional > span{
+	background-color: #911C92!important;
+}
 
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
 <body>
+
+<div id="dialog">
+	<div class="train">
+		<h2 class="expand" tabindex="0">Broadmeadows Station</h2>
+		<ul>
+			<li>
+				<span>
+					<p><span>59</span>min</p>
+					<p>10:03</p>
+				</span>
+				<p>Flinders Street Station via the City Loop</p>
+			</li>
+
+			<li>
+				<span class="regional">
+					<p><span>12</span>hr</p>
+					<p>22:03</p>
+				</span>
+				<p>Seymour</p>
+			</li>
+		</ul>
+	</div>
+	<div class="tram">
+		<h2 class="expand" tabindex="0">Nearest Trams</h2>
+		<ul>
+			<li>
+				<span>
+					<p><span>3</span>min</p>
+					<p>09:03</p>
+				</span>
+				<p>Route 93 St Kilda Beach</p>
+			</li>
+
+			<li>
+				<span>
+					<p><span>12</span>min</p>
+					<p>09:12</p>
+				</span>
+				<p>Route 103 South Melbourne</p>
+			</li>
+
+			<li>
+				<span>
+					<p><span>3</span>min</p>
+					<p>09:03</p>
+				</span>
+				<p>Route 93 St Kilda Beach</p>
+			</li>
+
+			<li>
+				<span>
+					<p><span>12</span>min</p>
+					<p>09:12</p>
+				</span>
+				<p>Route 103 South Melbourne</p>
+			</li>
+		</ul>
+	</div>
+	<div class="bus">
+		<h2 class="expand" tabindex="0">Nearest Buses</h2>
+		<ul>
+			<li>
+				<span>
+					<p><span>3</span>min</p>
+					<p>09:03</p>
+				</span>
+				<p>Route 903 Altona</p>
+			</li>
+		</ul>
+	</div>
+</div>
 
 <main>
 
