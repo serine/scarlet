@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title>Scarlet Style Guide</Title>
+<meta name="description" content="">
+
+<style type="text/css">
+
+* {
+margin: 0;
+padding: 0;
+}
+
+html,body{
+height:100%;
+background-color: #fff;
+background-size: 20px 20px;
+font-family: -apple-system, Helvetica, Arial, sans-serif;
+color: #111;
+font-size: 100%;
+-webkit-text-size-adjust:100%;
+/*overflow: hidden;*/
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+/*
+= Visual trial style
+*/
+
+#visual-trial{
+	width: 100%;
+	height: 100%;
+	background-color: yellow;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+#visual-trial section{
+	flex: 1 1 auto;
+	padding: 20px;
+}
+
+#visual-trial .line{
+	display: block;
+	width: 100%;
+	margin: 40px 0;
+	height: 4px;
+	background-color: #fff;
+	position: relative;
+}
+
+#visual-trial .line > span{
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: #fff;
+	display: inline-block;
+	position: absolute;
+	top: -8px;
+	left: 0;
+	text-align: center;
+	font-weight: bold;
+}
+
+#visual-trial .line > span:nth-child(2){
+	left: 33.33%;
+	margin-left: -10px;
+}
+
+#visual-trial .line > span:nth-child(3){
+	left: 66.66%;
+	margin-left: -10px;
+}
+
+#visual-trial .line > span:nth-child(4){
+	left: initial;
+	right: 0;
+}
+
+#visual-trial .line > span:nth-child(5){/* transport vehicle node */
+	left: initial;
+	right: 20%;
+	margin-top: -3px;
+	border-radius: initial;
+	border: 3px solid #000;
+}
+
+#visual-trial h2{
+	font-size: 1.2em;
+	margin: 12px 0;
+}
+
+#visual-trial h2 span{
+	background-color: white;
+	border: 3px solid #000;
+	padding: 1px 5px;
+	width: .8em;
+	margin-right: .2em;
+	display: inline-block;
+	text-align: center;
+}
+
+#visual-trial .selected{
+	background-color: #000!important;
+	border: 3px solid white;
+	margin-top: -3px;
+	border-radius: 22px!important;
+}
+
+#visual-trial p{
+	max-width: 300px;
+}
+
+/*
+= PT mode colour code classes
+*/
+
+.bus, .bus > span{
+	background-color: #FF8201!important;
+}
+
+.tram, .tram > span{
+	background-color: #78BE21!important;
+}
+
+.train, .train > span{
+	background-color: #0172CE!important;
+}
+
+.regional, .regional > span{
+	background-color: #911C92!important;
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+
+<div id="visual-trial">
+
+	<section class="train">
+		<h1 style="max-width: 300px;">Train > Craigieburn Line > Broadmeadows Station</h1>
+
+		<div class="line">
+			<span></span>
+			<span></span>
+			<span class="selected"></span>
+			<span></span>
+		</div>
+
+		<div class="line tram">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line bus">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line regional">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+	</section>
+
+	<section class="tram">
+		<h1>Tram</h1>
+
+		<div class="line">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line train">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line bus">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line regional">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+	</section>
+
+	<section class="bus">
+		<h1>Bus</h1>
+		<h2><span>1</span>min (19:03) 903 to Altona</h2>
+		<h2><span>6</span>min (19:08) 465 to Essendon</h2>
+		<div class="line">
+			<span></span>
+			<span class="selected"></span>
+			<span></span>
+			<span></span>
+			<span>1</span>
+		</div>
+
+		<div class="line train">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line tram">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line regional">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<p>The visual style ensures clarity of mode selection, stop node selection and vehicle node identification + time. </p>
+
+	</section>
+
+	<section class="regional">
+		<h1>Regional</h1>
+
+		<div class="line">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line train">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line tram">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+		<div class="line bus">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+
+	</section>
+
+</div>	
+
+</body>
+
+</html>
