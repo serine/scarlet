@@ -301,11 +301,11 @@ header > h1{
 	transition: max-height 0.3s ease-out;
 }
 
-#dialog > div h2:focus{
+#dialog > div h2:focus, #dialog > div h2:active{
 	outline: none;
 }
 
-#dialog > div h2:focus + ul{/* show ul on preceeding h2 focus */
+#dialog > div h2:focus + ul, #dialog > div h2:active + ul{/* show ul on preceeding h2 focus */
 	/*display: initial;*/
 	visibility: visible;
 	max-height: 200px;
@@ -361,11 +361,11 @@ text-align: center;
 	right: 10px;
 }
 
-h2:focus{/* HACK make see through to clicks so element can be unfocused by clicking parent with tabindex */
-	/*pointer-events:none;*/
+h2:focus, h2:active{/* HACK make see through to clicks so element can be unfocused by clicking parent with tabindex */
+	pointer-events:none;
 }
 
-h2:focus:after, .collapse:after{/* collapse arrow on h2 focus or psudo class */
+h2:focus:after, h2:active:after, .collapse:after{/* collapse arrow on h2 focus or psudo class */
 	content: " \25BC";
 	right: 12px;
 }
@@ -416,7 +416,7 @@ figure{
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 
-<body>
+<body ontouchstart="">
 
 <header>
 	<h1>Scarlet</h1>
