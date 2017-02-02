@@ -14,6 +14,7 @@ Allow users to geospatially and interactively determine where public transport s
 - [D3 flight visualisation demo](http://www.decembercafe.org/demo/plane/)
 - [Public transport graphic design collateral](https://www.pinterest.com/dmncmzz/transport/)
 - [transitmap.net Pinterest](https://www.pinterest.com/camgbooth/transit-maps/)
+- PTV mode colours &#x1F4D9;`bus #FF8201` &#x1F4D7;`tram #78BE21` &#x1F4D8;`train #0172CE` &#x1F49C;`regional #911C92`
 
 ## Scope
 - Prototype using Caulfield group (Pakenham, Cranbourne and Frankston) train lines and intersecting tram and bus routes via the City Loop through D3v4.
@@ -23,12 +24,13 @@ Allow users to geospatially and interactively determine where public transport s
 
 ## Timeline
 
-Team Member | Tuesday | Wednesday | Thursday | Friday
------------ | ------- | --------- | -------- | ------
-Bo | +1 to team | - | - | - |
-Dom | Project management + doc, design ideas | Design and web wireframe/assets | HTML/CSS magic + assets | Refine layout |
-Kizza | D3 nodes, on Node + doc | Stop nodes | Vehicle nodes, service info display | Refine info display |
-Lewis | D3 route investigation | Working routes | Routes/node animation | Refine network display |
+Team Member | Tuesday | Wednesday | Thursday
+----------- | ------- | --------- | -------- 
+Dom | Project management + doc, design ideas | Design and web wireframe/assets | HTML/CSS magic + assets, manually find mode connections for faux nearest neighbour
+Kizza | D3 nodes, on Node + doc | Stop nodes | Vehicle nodes, service info display
+Lewis | D3 route investigation | Working routes | Routes/node animation
+
+Friday: presentation.
 
 All of the above, then beer.
 

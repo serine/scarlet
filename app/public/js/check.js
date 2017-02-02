@@ -1,7 +1,5 @@
-trainStops = "data/2/stops.txt"
+trainStops = "train_stops.txt"
 trainStopTimes = "data/2/stop_times.txt"
-ff = "data/3/stops.txt"
-tmp = "tmp.txt"
 
 
 // order in stopTimes array
