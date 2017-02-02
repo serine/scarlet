@@ -4,8 +4,25 @@
 <meta charset="utf-8">
 <title>Scarlet Visual Experiments</Title>
 <meta name="description" content="">
+<script type="text/javascript" src="stop_times.json"></script>
 <script type="text/javascript">
 
+//unique values from http://stackoverflow.com/a/17781071
+var lookup = {};
+var result = [];
+
+function stopTimesTest(){
+	for (i =0; i < stopTimes.length; i++) {
+		var tripId = stopTimes[i].trip_id;
+
+		if (!(tripId in lookup)) {
+		    lookup[tripId] = 1;
+		    result.push(tripId);
+		  }
+	}
+	console.log(result)
+}
+stopTimesTest()
 
 </script>
 <style type="text/css">
