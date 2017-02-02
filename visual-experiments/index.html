@@ -301,9 +301,10 @@ header > h1{
 	transition: max-height 0.3s ease-out;
 }
 
-#dialog > div h2:focus, #dialog > div h2:active{
+#dialog > div h2:focus{
 	outline: none;
 	color: #fff;
+	background-color: #f0f;
 }
 
 #dialog > div h2:focus + ul{/* show ul on preceeding h2 focus */
@@ -420,9 +421,9 @@ figure{
 </header>
 
 
-<div id="dialog" class="noselect" tabindex="-1">
+<div id="dialog" class="noselect" tabindex="0">
 	<div class="train">
-		<h2 class="expand" tabindex="-1">Broadmeadows Station</h2>
+		<h2 class="expand" tabindex="0">Broadmeadows Station</h2>
 		<ul>
 			<li>
 				<span>
@@ -442,7 +443,7 @@ figure{
 		</ul>
 	</div>
 	<div class="tram">
-		<h2 class="expand" tabindex="-1">Nearest Trams</h2>
+		<h2 class="expand" tabindex="0">Nearest Trams</h2>
 		<ul>
 			<li>
 				<span>
@@ -478,7 +479,7 @@ figure{
 		</ul>
 	</div>
 	<div class="bus">
-		<h2 class="expand" tabindex="-1">Nearest Buses</h2>
+		<h2 class="expand" tabindex="0">Nearest Buses</h2>
 		<ul>
 			<li>
 				<span>
