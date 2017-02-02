@@ -4,6 +4,11 @@
 
 Allow users to geospatially and interactively determine where public transport services are judge the quality of connections. Visual emphasis must be placed on route selection, and vehicles traveling on and to those routes.
 
+## UI Design
+- [UI for presentation](https://domenicomazza.github.io/scarlet/ui/)
+- [Style guide](https://domenicomazza.github.io/scarlet/ui/style-guide.html)
+- [Lewis ready file](https://domenicomazza.github.io/scarlet/ui/lewis-ready.html) (no zooming script and svg)
+
 ## Data
 
 - [Public Transport Victoria GTFS data](data/gtfs/README.md)
@@ -14,6 +19,7 @@ Allow users to geospatially and interactively determine where public transport s
 - [D3 flight visualisation demo](http://www.decembercafe.org/demo/plane/)
 - [Public transport graphic design collateral](https://www.pinterest.com/dmncmzz/transport/)
 - [transitmap.net Pinterest](https://www.pinterest.com/camgbooth/transit-maps/)
+- PTV mode colours &#x1F4D9;`bus #FF8201` &#x1F4D7;`tram #78BE21` &#x1F4D8;`train #0172CE` &#x1F49C;`regional #911C92`
 
 ## Scope
 - Prototype using Caulfield group (Pakenham, Cranbourne and Frankston) train lines and intersecting tram and bus routes via the City Loop through D3v4.
@@ -23,12 +29,13 @@ Allow users to geospatially and interactively determine where public transport s
 
 ## Timeline
 
-Team Member | Tuesday | Wednesday | Thursday | Friday
------------ | ------- | --------- | -------- | ------
-Bo | +1 to team | - | - | - |
-Dom | Project management + doc, design ideas | Design and web wireframe/assets | HTML/CSS magic + assets | Refine layout |
-Kizza | D3 nodes, on Node + doc | Stop nodes | Vehicle nodes, service info display | Refine info display |
-Lewis | D3 route investigation | Working routes | Routes/node animation | Refine network display |
+Team Member | Tuesday | Wednesday | Thursday
+----------- | ------- | --------- | -------- 
+Dom | Project management + doc, design ideas | Design and web wireframe/assets | HTML/CSS magic + assets, manually find mode connections for faux nearest neighbour
+Kizza | D3 nodes, on Node + doc | Stop nodes | Vehicle nodes, service info display
+Lewis | D3 route investigation | Working routes | Routes/node animation
+
+Friday: presentation.
 
 All of the above, then beer.
 

@@ -1,7 +1,11 @@
-trainStops = "data/2/stops.txt"
+trainStops = "train_stops.txt"
 trainStopTimes = "data/2/stop_times.txt"
+<<<<<<< HEAD
+ff = "bus_stops.txt"
+=======
 ff = "data/3/stops.txt"
 tmp = "tmp.txt"
+>>>>>>> serine/master
 
 
 // order in stopTimes array
