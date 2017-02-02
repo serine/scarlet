@@ -4,6 +4,9 @@
 
 Allow users to geospatially and interactively determine where public transport services are judge the quality of connections. Visual emphasis must be placed on route selection, and vehicles traveling on and to those routes.
 
+## Visual Experiments
+UI elements for the visualisation can be seen [here](https://domenicomazza.github.io/scarlet/visual-experiments/).
+
 ## Data
 
 - [Public Transport Victoria GTFS data](data/gtfs/README.md)
