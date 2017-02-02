@@ -3,6 +3,7 @@ trainStopTimes = "data/2/stop_times.txt"
 ff = "data/3/stops.txt"
 tmp = "tmp.txt"
 
+
 // order in stopTimes array
 // 0 trip_id
 // 1 arrival_time
@@ -83,19 +84,24 @@ var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("position", "absolute")
     .style("width", "200px")
-    .style("height", "500px")
+    .style("height", "350px")
     .style("overflow", "auto")
     //.style("display", "inline")
     .style("opacity", 0);
 
 var timeTableDiv = d3.select("body").append("div")
-    .attr("class", "timeTable")
+    .attr("class", "tooltip")
     .style("position", "absolute")
     //.style("display", "inline")
     //.style("opacity", 0);
 
 //function getTimeTable(lists, station, callback) {
-function getTimeTable(lists, station) {
+function getTimeTable(lists, station, now) {
+
+    var h = now.getHours();
+    var m = now.getMinutes();
+    var chkTime = h+":"+m;
+
     var timeTable = "";
 
     station = station.split("Railway")[0];
@@ -109,7 +115,14 @@ function getTimeTable(lists, station) {
     lists.forEach(function(subList) {
         var arrival = subList[1];
         var departure = subList[2];
-        depTimes.push(departure.replace(/['"]+/g, ''));
+        departure = departure.replace(/['"]+/g, '');
+        var t = departure.split(":")
+        if(parseInt(t[0]) == parseInt(h)) {
+            if(parseInt(m)-15 <= parseInt(t[1]) <= parseInt(m)+15) {
+                depTimes.push(departure);
+            };
+        };
+        //depTimes.push(departure.replace(/['"]+/g, ''));
 
         //timeTable += "A:";
         //timeTable += arrival;
@@ -120,14 +133,35 @@ function getTimeTable(lists, station) {
         //timeTable += "--------\n";
     });
     depTimes.sort()
-    var depString = depTimes.join("\n")
+    var uniqueTimes = depTimes.filter(function(elem, index, self) {
+        return index == self.indexOf(elem);
+    });
+    //var depString = depTimes.join("\n")
+    var depString = uniqueTimes.join("\n")
     
     timeTable += depString;
     timeTable += "</pre>";
     //console.log(timeTable);
     //callback(timeTable)
-    return timeTable
+    //return timeTable;
+    return uniqueTimes
 };
+
+function buildTable(arr) {
+
+    var timeTable ="";
+    timeTable += "<table>";
+
+    arr.forEach(function(e) {
+        timeTable += "<tr><td>"+e+"</td></tr>";
+    });
+    timeTable += "</table>";
+
+    return timeTable;
+};
+
+var currentTime = new Date(); // for now
+//var s = d.getSeconds();
 
 d3.csv(trainStops, function(error, stopData) {
 
@@ -146,7 +180,10 @@ d3.csv(trainStops, function(error, stopData) {
                         // cleaning up name string
                     //tooltip.html(stopData.stop_name.split("Railway")[0])
                     //tooltip.html(getTimeTable(stopTimes[stopData.stop_id], stopData.stop_name,  function(d) {return d}))
-                    tooltip.html(getTimeTable(stopTimes[stopData.stop_id], stopData.stop_name))
+                    timeTableDiv.html(stopData.stop_name)
+                        .style("left", (d3.event.pageX + 150) + "px")
+                        .style("top", (d3.event.pageY - 128) + "px")
+                    tooltip.html(buildTable(getTimeTable(stopTimes[stopData.stop_id], stopData.stop_name, currentTime)))
                         .style("left", (d3.event.pageX + 50) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 })
