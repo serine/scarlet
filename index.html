@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>PTV Visualisation</title>
+		<meta charset="urf-8">
+		<style>
+		.cranbourne-line, .pakenham-line {
+		  	fill: none;
+		  	stroke: steelblue;
+		  	stroke-width: 4px;
+		}
+		.frankston-line, .werribee-line, .williamstown-line {
+			fill: none;
+			stroke: green;
+			stroke-width: 4px;
+		}
+		.glen-waverley-line, .alamein-line, .belgrave-line, .lilydale-line {
+			fill: none;
+			stroke: sienna;
+			stroke-width: 4px;
+		}
+		.sunbury-line, .craigieburn-line, .upfield-line, .flemington-line {
+			fill: none;
+			stroke: yellow;
+			stroke-width: 4px;
+		}
+		.sandringham-line {
+			fill: none;
+			stroke: hotpink;
+			stroke-width: 4px;
+		}
+		.south-morang-line, .hurstbridge-line {
+			fill: none;
+			stroke: red;
+			stroke-width: 4px;
+		}
+		.stony-point-line {
+			fill: none;
+			stroke: grey;
+			stroke-width: 4px;
+		}
+		.tram3-line {
+			fill: none;
+			stroke: aqua;
+			stroke-width: 2px;
+		}
+
+		.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+		</style>
+	</head>
+	<body>
+		<svg id="canvas"></svg>
+
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		<script>
+
+			// var windowWidth = window.innerWidth,
+			// 	windowHeight = window.innerHeight;
+
+			var windowWidth = 2000,
+				windowHeight = 2000;
+
+			var svg = d3.select("svg")
+				.attr("width", windowWidth)
+				.attr("height", windowHeight);
+
+			var	margin = {top: 20, right: 20, bottom: 30, left: 50},
+				width = +svg.attr("width") - margin.left - margin.right,
+				height = +svg.attr("height") - margin.top - margin.bottom;
+
+			var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+			var x = d3.scale.linear()
+				.rangeRound( [0, width] );
+
+			var y = d3.scale.linear()
+				.rangeRound( [height, 0] );
+
+			var line = d3.svg.line()
+				.x(function(d) { return x(d.shape_pt_lon); })
+				.y(function(d) { return y(d.shape_pt_lat); });
+
+			var x_min = 144.661118011171, x_max = 145.486379074704,
+				y_min = -38.3742345364937, y_max = -37.5790909705787;
+
+			var tip = d3.tip()
+				.attr('class', 'd3-tip')
+				.offset([-10, 0])
+			 	.html(function(d) {
+			    	return "<strong>Stop:</strong> <span style='color:red'>" + d.stop_name + "</span>";
+			  	})
+
+			var path;
+
+			// svg.call(tip);
+
+			// var x_min = 144.5, x_max = 145.5,
+			// 	y_min = -38.5, y_max = -37.5;
+
+			d3.csv("filtered-csv-shapes/shapes_pakenham.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lon = +d.shape_pt_lon;
+					d.shape_pt_lat = +d.shape_pt_lat;
+    			});
+
+  				x.domain([x_min, x_max]);
+  				y.domain([y_min, y_max]);
+
+				// x.domain([d3.min(data, function(d) { return d.shape_pt_lat; })-0.2, d3.max(data, function(d) { return d.shape_pt_lat; })+0.2 ]);
+				// y.domain([d3.min(data, function(d){ return d.shape_pt_lon; })-0.2, d3.max(data, function(d){ return d.shape_pt_lon; })+0.2]);
+
+				// x_min = d3.min(data, function(d) { return d.shape_pt_lat; })-0.2;
+				// x_max = d3.max(data, function(d) { return d.shape_pt_lat; })+0.2;
+				// y_min = d3.min(data, function(d) { return d.shape_pt_lon; })-0.2;
+				// y_max = d3.max(data, function(d) { return d.shape_pt_lon; })+0.2;
+
+				path = g.append("path")
+					.datum(data)
+					.attr("class", "pakenham-line")
+					.attr("d", line);
+
+				// g.selectAll("circle")
+				// 	.data(data)
+				// 	.enter().append("circle")
+				// 	.attr("cx", function(d) { return x(d.shape_pt_lat) })
+				// 	.attr("cy", function(d) { return y(d.shape_pt_lon) })
+				// 	.attr("r", 1.5);
+
+				// g.append("path")
+				// 	.datum(data)
+				// 	.attr("fill", "none")
+				// 	.attr("stroke", "steelblue")
+				// 	.attr("stroke-linejoin", "round")
+				// 	.attr("stroke-linecap", "round")
+				// 	.attr("stroke-width", 2)
+				// 	.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_cranbourne.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				// x.domain([d3.min(data, function(d) { return d.shape_pt_lat; }), d3.max(data, function(d) { return d.shape_pt_lat; }) ]);
+				// y.domain([d3.min(data, function(d){ return d.shape_pt_lon; }), d3.max(data, function(d){ return d.shape_pt_lon; })]);
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "cranbourne-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_frankston.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				// x.domain([d3.min(data, function(d) { return d.shape_pt_lat; }), d3.max(data, function(d) { return d.shape_pt_lat; }) ]);
+				// y.domain([d3.min(data, function(d){ return d.shape_pt_lon; }), d3.max(data, function(d){ return d.shape_pt_lon; })]);
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "frankston-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_glen_waverley.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				// x.domain([d3.min(data, function(d) { return d.shape_pt_lat; }), d3.max(data, function(d) { return d.shape_pt_lat; }) ]);
+				// y.domain([d3.min(data, function(d){ return d.shape_pt_lon; }), d3.max(data, function(d){ return d.shape_pt_lon; })]);
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "glen-waverley-line")
+					.attr("d", line);
+
+			});			
+
+			d3.csv("filtered-csv-shapes/shapes_sunbury.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				// x.domain([d3.min(data, function(d) { return d.shape_pt_lat; }), d3.max(data, function(d) { return d.shape_pt_lat; }) ]);
+				// y.domain([d3.min(data, function(d){ return d.shape_pt_lon; }), d3.max(data, function(d){ return d.shape_pt_lon; })]);
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "sunbury-line")
+					.attr("d", line);
+
+			});				
+
+			d3.csv("filtered-csv-shapes/shapes_alamein.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "alamein-line")
+					.attr("d", line);
+
+			});	
+
+			d3.csv("filtered-csv-shapes/shapes_craigieburn.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "craigieburn-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_belgrave.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "belgrave-line")
+					.attr("d", line);
+
+			});	
+
+			d3.csv("filtered-csv-shapes/shapes_sandringham.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "sandringham-line")
+					.attr("d", line);
+
+			});	
+
+			d3.csv("filtered-csv-shapes/shapes_south_morang.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "south-morang-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_stony_point.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "stony-point-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_lilydale.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "lilydale-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_werribee.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "werribee-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_hurstbridge.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "hurstbridge-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_williamstown.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "williamstown-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_upfield.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "upfield-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_flemington.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "flemington-line")
+					.attr("d", line);
+
+			});
+
+			d3.csv("filtered-csv-shapes/shapes_3.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			d.shape_pt_lat = +d.shape_pt_lat;
+					d.shape_pt_lon = +d.shape_pt_lon;
+    			});
+
+				x.domain([x_min, x_max]);
+				y.domain([y_min, y_max]);
+
+				g.append("path")
+					.datum(data)
+					.attr("class", "tram3-line")
+					.attr("d", line);
+
+			});
+
+
+			d3.csv("filtered-csv-shapes/train_stops.csv", function(error, data) {
+			// d3.csv("filtered-csv-shapes/shapes_frankston.csv", function(error, data) {
+			// // d3.csv("data.csv", function(error, data) {
+    			data.forEach(function(d) {
+        			// d.date = parseDate(d.date);
+        			// d.close = +d.close;
+        			d.stop_lon = +d.stop_lon;
+        			// d.shape_pt_lat = -d.shape_pt_lat;
+					d.stop_lat = +d.stop_lat;
+					// d.shape_pt_lon = -d.shape_pt_lon;
+    			});
+
+    			console.log(d3.min(data, function(d) { return d.stop_lon; }));
+    			console.log(d3.max(data, function(d) { return d.stop_lon; }));
+    			console.log(d3.min(data, function(d) { return d.stop_lat; }));
+    			console.log(d3.max(data, function(d) { return d.stop_lat; }));
+
+    			x.domain([x_min, x_max]);
+  				y.domain([y_min, y_max]);
+
+  				var circleX, circleY;
+
+    			g.selectAll("circle")
+					.data(data)
+					.enter().append("circle")
+					.attr("cx", function(d) { circleX = x(d.stop_lon); return circleX; })
+					.attr("cy", function(d) { circleY = y(d.stop_lat); return circleY; })
+					// .attr("fill", "#0172CE")
+					.attr("fill", "#000000")
+					.attr("r", 4)
+					// .on("click", showSurrounding(circleX, circleY))
+					// .on('mouseover', tip.show)
+					// .on('mouseout', tip.hide);
+					.append("svg:title")
+   					.text(function(d) { return d.stop_name; });
+
+   		// 		var circle = g.append("circle")
+					// .attr("cx", x(144.966964346166))
+					// .attr("cy", y(-37.8183051340585))
+					// .attr("r", 8)
+					// // .attr("transform", "translate(" + pathStartPoint(path) + ")")
+					// .style("fill", "#FF0000");
+
+// 				transition();	
+
+// 				function transition() {
+// 				  	circle.transition()
+// 				    	.duration(30000)
+// 				    	.attrTween("transform", translateAlong(path.node()))
+// 				    	.each("end", transition);
+// 				}
+
+// // Returns an attrTween for translating along the specified path element.
+// function translateAlong(path) {
+//   var l = path.getTotalLength();
+//   return function(d, i, a) {
+//     return function(t) {
+//       var p = path.getPointAtLength(t * l);
+//       return "translate(" + p.x + "," + p.y + ")";
+//     };
+//   };
+// }
+
+    		});
+
+			// d3.csv("filtered-csv-shapes/tram_stops.csv", function(error, data) {
+   //  			data.forEach(function(d) {
+   //      			d.stop_lon = +d.stop_lon;
+			// 		d.stop_lat = +d.stop_lat;
+   //  			});
+
+   //  			x.domain([x_min, x_max]);
+  	// 			y.domain([y_min, y_max]);
+
+   //  			g.selectAll("circle")
+			// 		.data(data)
+			// 		.enter().append("circle")
+			// 		.attr("cx", function(d) { return x(d.stop_lon) })
+			// 		.attr("cy", function(d) { return y(d.stop_lat) })
+			// 		.attr("fill", "#000000")
+			// 		.attr("r", 2)
+			// 		.append("svg:title")
+   // 					.text(function(d) { return d.stop_name; });;
+
+   //  		});
+
+			// function showSurrounding(x, y) {
+			// 	// alert("It works!");
+			// 	g.append("circle")
+			// 		.attr("cx", x)
+			// 		.attr("cy", y)
+			// 		.attr("r", 20);
+			// }
+
+			
+
+		</script>
+	</body>
+<!-- <html> -->
