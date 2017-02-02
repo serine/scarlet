@@ -5,7 +5,7 @@
 Allow users to geospatially and interactively determine where public transport services are judge the quality of connections. Visual emphasis must be placed on route selection, and vehicles traveling on and to those routes.
 
 ## UI Design
-- [UI for presentation](https://domenicomazza.github.io/scarlet/ui/).
+- [UI for presentation](https://domenicomazza.github.io/scarlet/ui/)
 - [Style guide](https://domenicomazza.github.io/scarlet/ui/style-guide.html)
 
 ## Data
