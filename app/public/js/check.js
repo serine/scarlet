@@ -1,9 +1,54 @@
 trainStops = "data/2/stops.txt"
 trainStopTimes = "data/2/stop_times.txt"
 ff = "data/3/stops.txt"
+tmp = "tmp.txt"
 
-//domain = {-50, 150}
+// order in stopTimes array
+// 0 trip_id
+// 1 arrival_time
+// 2 departure_time
+// 3 stop_id
+// 4 stop_sequence
+// 5 stop_headsign
+// 6 pickup_type
+// 7 drop_off_type
+// 8 shape_dist_traveled
+//
+function getDataValues(textFile, callback) {
+//function getDataValues(textFile) {
+    var sep = ","
+    var dataObj = {};
+    // 
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", function(data) {
+        // this is an array, where single element equals
+        // to a line from a text file
+        var lines = this.responseText.split("\n");
+	// step through each line and separate items on a tab
+        lines.forEach(function(l) {
+            var rowList = l.split(sep);
+            var stopId = rowList[3];
+            if(typeof stopId !== 'undefined') {
+                stopId = stopId.replace(/['"]+/g, '');
+                if(!(stopId in dataObj))
+                    dataObj[stopId] = [];
+                dataObj[stopId].push(rowList);
+            };
+        });
+	// return array of arrays as a callback
+        callback(dataObj);
+    });
+    // true to enable async fetch, default is true
+    // didn't have to specify it here
+    oReq.open("GET", textFile, true);
+    oReq.send();
+};
 
+//getDataValues(trainStopTimes, function(data) {
+//getDataValues(tmp, function(data) {
+//  console.log(data["stop_id"])
+//});
+//
 var margin = {
     top: -450,
     right: 20,
@@ -37,6 +82,9 @@ var chart1 = d3.select("body")
 var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("position", "absolute")
+    .style("width", "200px")
+    .style("height", "500px")
+    .style("overflow", "auto")
     //.style("display", "inline")
     .style("opacity", 0);
 
@@ -46,34 +94,73 @@ var timeTableDiv = d3.select("body").append("div")
     //.style("display", "inline")
     //.style("opacity", 0);
 
+//function getTimeTable(lists, station, callback) {
+function getTimeTable(lists, station) {
+    var timeTable = "";
+
+    station = station.split("Railway")[0];
+
+    timeTable += "<pre>";
+    timeTable += station;
+    timeTable += "\n";
+    timeTable += "Departure Times:";
+    timeTable += "\n";
+    var depTimes = [];
+    lists.forEach(function(subList) {
+        var arrival = subList[1];
+        var departure = subList[2];
+        depTimes.push(departure.replace(/['"]+/g, ''));
+
+        //timeTable += "A:";
+        //timeTable += arrival;
+        //timeTable += "\n";
+        //timeTable += "D:";
+        //timeTable += departure.replace(/['"]+/g, '');
+        //timeTable += "\n";
+        //timeTable += "--------\n";
+    });
+    depTimes.sort()
+    var depString = depTimes.join("\n")
+    
+    timeTable += depString;
+    timeTable += "</pre>";
+    //console.log(timeTable);
+    //callback(timeTable)
+    return timeTable
+};
 
 d3.csv(trainStops, function(error, stopData) {
-    chart1.selectAll("g")
-            .data(stopData)
-            .enter()
-            .append("circle")
-            .attr("id", function(stopData) {return "stopId-"+stopData.stop_id} )
-            //.attr("name", function(d) {return d.stop_name} )
-            .on("mouseover", function(stopData) {
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9)
-                    // cleaning up name string
-                tooltip.html(stopData.stop_name.split("(")[1].replace(")",""))
-                //tooltip.html(stopData.stop_name)
-                    .style("left", (d3.event.pageX + 50) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+
+    getDataValues(trainStopTimes, function(stopTimes) {
+
+        chart1.selectAll("g")
+                .data(stopData)
+                .enter()
+                .append("circle")
+                .attr("id", function(stopData) {return "stopId-"+stopData.stop_id} )
+                //.on("mouseover", function(stopData) {
+                .on("click", function(stopData) {
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9)
+                        // cleaning up name string
+                    //tooltip.html(stopData.stop_name.split("Railway")[0])
+                    //tooltip.html(getTimeTable(stopTimes[stopData.stop_id], stopData.stop_name,  function(d) {return d}))
+                    tooltip.html(getTimeTable(stopTimes[stopData.stop_id], stopData.stop_name))
+                        .style("left", (d3.event.pageX + 50) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
                 })
-            .on("mouseout", function(stopData) {
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-                })
-            .attr("cx", function(stopData) {return xScale(stopData.stop_lon)} )
-            .attr("cy", function(stopData) {return yScale(stopData.stop_lat)} )
-            .attr("r", 1)
-            .attr("stroke", "blue")
-            .attr("fill", "white")
+                //.on("mouseout", function(stopData) {
+                //    tooltip.transition()
+                //        .duration(500)
+                //        .style("opacity", 0);
+                //})
+                .attr("cx", function(stopData) {return xScale(stopData.stop_lon)} )
+                .attr("cy", function(stopData) {return yScale(stopData.stop_lat)} )
+                .attr("r", 1)
+                .attr("stroke", "blue")
+                .attr("fill", "white")
+    });
             
         //console.log(stopData)
         //console.log(stopTimesData[0])
