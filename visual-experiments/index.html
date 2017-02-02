@@ -130,7 +130,7 @@ overflow: hidden;
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
+  /*-webkit-touch-callout: none;  iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
        -moz-user-select: none; /* Firefox */
@@ -303,8 +303,6 @@ header > h1{
 
 #dialog > div h2:focus{
 	outline: none;
-	color: #fff;
-	background-color: #f0f;
 }
 
 #dialog > div h2:focus + ul{/* show ul on preceeding h2 focus */
@@ -421,9 +419,9 @@ figure{
 </header>
 
 
-<div id="dialog" class="noselect" tabindex="0">
+<div id="dialog" class="noselect" tabindex="-1">
 	<div class="train">
-		<h2 class="expand" tabindex="0">Broadmeadows Station</h2>
+		<h2 class="expand" tabindex="-1">Broadmeadows Station</h2>
 		<ul>
 			<li>
 				<span>
@@ -443,7 +441,7 @@ figure{
 		</ul>
 	</div>
 	<div class="tram">
-		<h2 class="expand" tabindex="0">Nearest Trams</h2>
+		<h2 class="expand" tabindex="-1">Nearest Trams</h2>
 		<ul>
 			<li>
 				<span>
@@ -479,7 +477,7 @@ figure{
 		</ul>
 	</div>
 	<div class="bus">
-		<h2 class="expand" tabindex="0">Nearest Buses</h2>
+		<h2 class="expand" tabindex="-1">Nearest Buses</h2>
 		<ul>
 			<li>
 				<span>
