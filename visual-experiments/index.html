@@ -298,11 +298,12 @@ header > h1{
 	visibility: hidden;
 	max-height: 0;
 	overflow: hidden;
-	/*transition: max-height 0.3s ease-out;*/
+	transition: max-height 0.3s ease-out;
 }
 
 #dialog > div h2:focus{
 	outline: none;
+	color: #fff;
 }
 
 #dialog > div h2:focus + ul{/* show ul on preceeding h2 focus */
@@ -310,7 +311,7 @@ header > h1{
 	visibility: visible;
 	max-height: 200px;
 	overflow-y: scroll;
-	/*transition: max-height 0.3s ease-in;*/
+	transition: max-height 0.3s ease-in;
 }
 
 #dialog > div ul{
