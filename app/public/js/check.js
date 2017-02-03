@@ -83,16 +83,15 @@ var chart1 = d3.select("body")
 // add the tooltip area to the webpage
 var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
-    .style("position", "absolute")
-    .style("width", "200px")
-    .style("height", "350px")
-    .style("overflow", "auto")
     //.style("display", "inline")
-    .style("opacity", 0);
+    //.style("opacity", 0);
 
 var timeTableDiv = d3.select("body").append("div")
-    .attr("class", "tooltip")
+    .attr("class", "stationName")
+    .style("padding", "1em")
+    .style("border-radius", "2em")
     .style("position", "absolute")
+    .style("opacity", .97)
     //.style("display", "inline")
     //.style("opacity", 0);
 
@@ -151,7 +150,7 @@ function getTimeTable(lists, station, now) {
 function buildTable(arr) {
 
     var timeTable ="";
-    timeTable += "<table>";
+    timeTable += '<table class=".table">';
 
     arr.forEach(function(e) {
         timeTable += "<tr><td>"+e+"</td></tr>";
@@ -177,22 +176,22 @@ d3.csv(trainStops, function(error, stopData) {
                 .on("click", function(stopData) {
                     tooltip.transition()
                         .duration(200)
-                        .style("opacity", .9)
                         // cleaning up name string
                     //tooltip.html(stopData.stop_name.split("Railway")[0])
                     //tooltip.html(getTimeTable(stopTimes[stopData.stop_id], stopData.stop_name,  function(d) {return d}))
-                    timeTableDiv.html(stopData.stop_name)
+                    timeTableDiv.html("<h2>"+stopData.stop_name+"</h2>")
                         .style("left", (d3.event.pageX + 150) + "px")
                         .style("top", (d3.event.pageY - 128) + "px")
                     tooltip.html(buildTable(getTimeTable(stopTimes[stopData.stop_id], stopData.stop_name, currentTime)))
                         .style("left", (d3.event.pageX + 50) + "px")
-                        .style("top", (d3.event.pageY - 28) + "px");
+                        .style("top", (d3.event.pageY - 28) + "px")
                 })
                 //.on("mouseout", function(stopData) {
-                //    tooltip.transition()
-                //        .duration(500)
-                //        .style("opacity", 0);
-                //})
+                .on("doubleclick", function(stopData) {
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                })
                 .attr("cx", function(stopData) {return xScale(stopData.stop_lon)} )
                 .attr("cy", function(stopData) {return yScale(stopData.stop_lat)} )
                 .attr("r", 1)

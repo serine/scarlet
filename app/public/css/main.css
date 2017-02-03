@@ -22,9 +22,20 @@
 }
 
 .tooltip {
-  background: #6E6E6E;
+  background: #EEE9E9;
+  position: absolute;
+  padding: 1em;
+  border-radius: 2em;
+  width: 150px;
+  height: 250px;
+  margin: 0 auto;
+  overflow: auto;
+  opacity: .97;
 }
 
+.stationName {
+  background: #EEE9E9;
+}
 /*.chart {
    width: 500px;
    height: 400px;
