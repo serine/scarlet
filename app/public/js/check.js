@@ -1,6 +1,6 @@
 trainStops = "train_stops.txt"
 //trainStopTimes = "data/2/stop_times.txt"
-trainStopTimes = "tain_stop_times.txt"
+trainStopTimes = "train_stop_times.txt"
 ff = "bus_stops.txt"
 //ff = "data/3/stops.txt"
 tmp = "tmp.txt"
